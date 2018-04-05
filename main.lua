@@ -14,6 +14,15 @@ physics.start()
 -------------------------------------------------------------------
 --Objects
 -------------------------------------------------------------------
+-- wall
+local wall = display.newImage("Physics/beam.png"0,0)
+
+wall.x = 
+wall.y = 
+
+wall.height = display.contentHeight
+
+wall:rotate(90)
 -- Ground
 local ground = display.newImage("Physics/ground.png",0,0)
 
@@ -25,7 +34,10 @@ ground.y = display.contentHeight
 ground.width = display.contentWidth
 
 -- Add to Physics
-Physics.addBody(ground,"static", {friction=0.5, bounce=0.3})
+Physics.addBody(wall,"static", {friction=0.5, bounce=0.8})
+
+-- Add to Physics
+Physics.addBody(ground,"static", {friction=0.5, bounce=0.5})
 
 -- create a verticle beam
 local beam = display.newImage("Physics/beam.png", 0, 0)
@@ -71,7 +83,7 @@ local function firstBall()
 	local ball1 = display.newImage("Physics/super_ball.png",0,0)
 
 	--add to physics
-	physics.addBody(ball2, {density=1.0, friction=0.5,bounce=0.3,radius=25})
+	physics.addBody(ball2, {density=1.0, friction=0.9,bounce=0.3,radius=25})
 end
 
 local function secondBall()
@@ -85,6 +97,16 @@ local function secondBall()
 	ball2:scale(0.5,0.5)
 end
 
+local function thirdBall()
+	--creating third ball
+	local ball3 = display.newImage("Physics/super_ball.png",0,0)
+
+	--adding to physics
+	physics.addBody(ball3, {density=1.0, friction=0.5,bounce=0.3,radius=12.5})
+
+
+	--make it smaller than the original size
+	ball3:scale(0.2,0.2)
 --------------------
 --Timer Delays - call each function after the given millisecond
 --------------------
