@@ -3,7 +3,7 @@
 -- Course:Ics2o/3C
 
 --Hide status bar
-display.setStatusBar(display.HiddenStatusBar
+display.setStatusBar(display.HiddenStatusBar)
 
 -- load physics
 local physics = require("physics")
@@ -15,14 +15,13 @@ physics.start()
 --Objects
 -------------------------------------------------------------------
 -- wall
-local wall = display.newImage("Physics/beam.png"0,0)
+local wall = display.newImage("Physics/beam.png",0,0)
 
-wall.x = 
-wall.y = 
+wall.x = 1000
+wall.y = 1000
 
 wall.height = display.contentHeight
 
-wall:rotate(90)
 -- Ground
 local ground = display.newImage("Physics/ground.png",0,0)
 
@@ -34,10 +33,10 @@ ground.y = display.contentHeight
 ground.width = display.contentWidth
 
 -- Add to Physics
-Physics.addBody(wall,"static", {friction=0.5, bounce=0.8})
+physics.addBody(wall,"static", {friction=0.5, bounce=0.8})
 
 -- Add to Physics
-Physics.addBody(ground,"static", {friction=0.5, bounce=0.5})
+physics.addBody(ground,"static", {friction=0.5, bounce=0.5})
 
 -- create a verticle beam
 local beam = display.newImage("Physics/beam.png", 0, 0)
@@ -47,7 +46,7 @@ beam.x = display.contentCenterX/5
 beam.y = display.contentCenterY*1.65
 
 --set the beam size
-beam.width = display.contentCenter/2
+beam.width = display.contentWidth/2
 beam.height = display.contentHeight/10
 
 --rotate the beam -60 degrees so its on an angle
@@ -83,7 +82,9 @@ local function firstBall()
 	local ball1 = display.newImage("Physics/super_ball.png",0,0)
 
 	--add to physics
-	physics.addBody(ball2, {density=1.0, friction=0.9,bounce=0.3,radius=25})
+	physics.addBody(ball1, {density=1.0, friction=0.9,bounce=0.3,radius=25})
+
+     ball1:scale(5,5)
 end
 
 local function secondBall()
@@ -106,9 +107,11 @@ local function thirdBall()
 
 
 	--make it smaller than the original size
-	ball3:scale(0.2,0.2)
+	ball3:scale(0.5,0.5)
+end
 --------------------
 --Timer Delays - call each function after the given millisecond
 --------------------
 timer.performWithDelay(0,firstBall)
 timer.performWithDelay( 500, secondBall)
+timer.performWithDelay(1000, thirdBall)
